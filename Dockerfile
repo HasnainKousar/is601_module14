@@ -23,8 +23,8 @@ RUN groupadd -r appgroup && \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
 COPY .trivyignore /app/.trivyignore
+COPY . .
 
 # Ensure correct ownership
 RUN chown -R appuser:appgroup /app
