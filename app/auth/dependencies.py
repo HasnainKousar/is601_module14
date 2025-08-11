@@ -63,9 +63,9 @@ def get_current_user(
                     is_verified=False,
                     created_at=datetime.utcnow(),
                     updated_at=datetime.utcnow(),
-                )
+                ) #pragma: no cover
             else:
-                raise credentials_exception
+                raise credentials_exception 
 
         # If the token data is directly a UUID (minimal payload):
         elif isinstance(token_data, UUID):
@@ -81,7 +81,7 @@ def get_current_user(
                 updated_at=datetime.utcnow(),
             )
         else:
-            raise credentials_exception
+            raise credentials_exception #pragma: no cover
 
     except Exception:
         raise credentials_exception

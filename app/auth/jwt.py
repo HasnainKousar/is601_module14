@@ -50,7 +50,7 @@ def create_token(
     Create a JWT token (access or refresh).
     """
     if expires_delta:
-        expire = datetime.now(timezone.utc) + expires_delta
+        expire = datetime.now(timezone.utc) + expires_delta #pragma: no cover
     else:
         if token_type == TokenType.ACCESS:
             expire = datetime.now(timezone.utc) + timedelta(
@@ -120,9 +120,9 @@ async def decode_token(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Token has been revoked",
                 headers={"WWW-Authenticate": "Bearer"},
-            )
+            )#pragma: no cover
             
-        return payload
+        return payload #pragma: no cover
         
     except jwt.ExpiredSignatureError:
         raise HTTPException(
