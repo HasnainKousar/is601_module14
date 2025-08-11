@@ -6,7 +6,7 @@ Redis utilities for JWT token blacklisting and connection management.
 Provides async functions to connect to Redis, add token JTIs to a blacklist, and check blacklist status.
 Used for revoking JWT tokens in authentication workflows.
 """
-import aioredis
+import redis.asyncio as aioredis
 from app.core.config import get_settings
 
 settings = get_settings()
