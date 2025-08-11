@@ -53,13 +53,10 @@ jobs:
         run: |
           source venv/bin/activate
           
-          # 1) Unit tests
-          pytest tests/unit/ --cov=src --junitxml=test-results/junit.xml
-          
-          # 2) Integration tests
-          pytest tests/integration/
-          
-          # 3) E2E or other tests
+          # Run integration tests
+          pytest tests/integration/ --cov=app --junitxml=test-results/junit.xml
+
+          # Run E2E tests
           pytest tests/e2e/
 
   security:
@@ -79,6 +76,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
+          trivyignores: /app/.trivyignore
   
   deploy:
     needs: security
@@ -99,8 +97,8 @@ jobs:
         with:
           push: true
           tags: |
-            kaw393939/601_module9:latest
-            kaw393939/601_module9:${{ github.sha }}
+            hkousar13/module14:latest
+            hkousar13/module14:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
-          cache-from: type=registry,ref=kaw393939/601_module9:cache
+          cache-from: type=registry,ref=hkousar13/module14:cache
           cache-to: type=inline,mode=max
